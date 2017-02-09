@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flask Template</title>
+
+    <!--CSS templates-->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/custom.css') }}">
+
+    <!--Google Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Sansita" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bahiana" rel="stylesheet">
+
+    <!--Jquery-->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
+</head>
+<body id="body">
+    <div class="container">
+        <h1 id="header">Super Market!</h1>
+        <p>A Market tailored to your interests!</p>
+
+        <ul>
+            {% for item in market_items %}
+                <li>{{item}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+        <div id="interests" class="fluid-container">
+            <p>We see you  have some hobbies, these links might interest you!</p>
+            {% for item in market_items %}
+                {% for hobby in interests %}
+                    {% if hobby[0] == item%}
+                        <a href="/{{hobby[0]}}">{{hobby[0]}}</a>
+                    {% endif %}
+                {% endfor %}
+            {% endfor%}
+            <br>
+            <br>
+            {% for user in user_name %}
+                <p>Logged in as <span style="font-weight: bold; text-transform: uppercase;">{{user[0]}}</span></p>
+            {% endfor %}
+        </div>
+</body>
+</html>
